@@ -1,0 +1,17 @@
+class Solution {
+public:
+    void fun(vector<int>& nums, int k, int n) {
+        k = k % n;
+        vector<int> temp(n);
+        for(int i = 0; i < n; i++) {
+            temp[(i + k) % n] = nums[i];
+        }
+        for(int i = 0; i < n; i++) {
+            nums[i] = temp[i];
+        }
+    }
+    void rotate(vector<int>& nums, int k) {
+        int n = nums.size();
+        fun(nums, k, n);
+    }
+};
