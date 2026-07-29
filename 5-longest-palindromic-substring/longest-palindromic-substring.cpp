@@ -1,29 +1,21 @@
 class Solution {
 public:
-    string longestPalindrome(string s) {
-        string res = "";
-
-        for(int i=0;i<s.size();i++){
-            // Odd length palindrome
-            int st=i,end=i;
-            while(st>=0 && end<s.size() && s[st]==s[end]){
-                st--;
-                end++;
-            }
-            string temp=s.substr(st+1,end-st-1);
-            if(temp.size()>res.size())res=temp;
-
-            // Even length palindrome
-            st=i;
-            end=i+1;
-            while(st>=0 && end<s.size() && s[st]==s[end]){
-                st--;
-                end++;
-            }
-            temp=s.substr(st+1,end-st-1);
-            if(temp.size()>res.size())res=temp;
+    string expandAroundCenter(string s, int left, int right) {
+        while (left >= 0 && right < s.length() && s[left] == s[right]) {
+            left--;
+            right++;
         }
+        return s.substr(left + 1, right - left - 1);
+    }
 
-        return res;
+    string longestPalindrome(string s) {
+        string longest = "";
+        for (int i = 0; i < s.length(); i++) {
+            string odd = expandAroundCenter(s, i, i);
+            string even = expandAroundCenter(s, i, i + 1);
+            if (even.length() > longest.length()) longest = even;
+            if (odd.length() > longest.length()) longest = odd;
+        }
+        return longest;
     }
 };
