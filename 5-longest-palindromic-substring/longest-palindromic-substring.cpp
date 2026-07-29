@@ -5,14 +5,14 @@ public:
             left--;
             right++;
         }
-        return s.substr(left + 1, right - left - 1);
+        return s.substr(left+1, right-left-1);
     }
 
     string longestPalindrome(string s) {
         string longest = "";
-        for (int i = 0; i < s.length(); i++) {
+        for (int i=0; i<s.length(); i++) {
             string odd = expandAroundCenter(s, i, i);
-            string even = expandAroundCenter(s, i, i + 1);
+            string even = expandAroundCenter(s, i, i+1);
             if (even.length() > longest.length()) longest = even;
             if (odd.length() > longest.length()) longest = odd;
         }
