@@ -5,7 +5,7 @@ public:
         int hasEven = false;
 
         for(int i=0; i<nums1.size(); i++){
-            if(i%2 == 0){
+            if(nums1[i]%2 == 0){
                 hasEven = true;
             }else{
                 hasOdd = true;
